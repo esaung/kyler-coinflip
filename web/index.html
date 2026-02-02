@@ -215,25 +215,29 @@
         }
 
         .coin.flipping {
-            animation: flip 1.5s ease-in-out;
+            animation: flip 1.5s ease-in-out forwards;
+        }
+
+        .coin.show-tails {
+            transform: rotateX(180deg);
         }
 
         @keyframes flip {
             0% { transform: rotateX(0deg); }
             15% { transform: rotateX(540deg); }
             50% { transform: rotateX(1620deg); }
-            100% { transform: rotateX(2160deg); }
+            100% { transform: rotateX(0deg); }
         }
 
         .coin.flipping.result-tails {
-            animation: flipToTails 1.5s ease-in-out;
+            animation: flipToTails 1.5s ease-in-out forwards;
         }
 
         @keyframes flipToTails {
             0% { transform: rotateX(0deg); }
             15% { transform: rotateX(540deg); }
             50% { transform: rotateX(1620deg); }
-            100% { transform: rotateX(2340deg); }
+            100% { transform: rotateX(180deg); }
         }
 
         .coin-face {
@@ -1228,8 +1232,9 @@
             // Generate result
             const result = Math.random() < 0.5 ? 'heads' : 'tails';
 
-            // Remove previous classes and add animation
-            coin.classList.remove('flipping', 'result-tails');
+            // Remove previous classes and reset state
+            coin.classList.remove('flipping', 'result-tails', 'show-tails');
+            coin.style.transform = '';
             void coin.offsetWidth; // Trigger reflow
 
             if (result === 'tails') {
@@ -1240,6 +1245,14 @@
 
             // After animation completes
             setTimeout(() => {
+                // Set final coin position
+                coin.classList.remove('flipping', 'result-tails');
+                if (result === 'tails') {
+                    coin.classList.add('show-tails');
+                } else {
+                    coin.classList.remove('show-tails');
+                }
+
                 // Update state
                 state.sessionFlips++;
                 state.totalFlips++;
