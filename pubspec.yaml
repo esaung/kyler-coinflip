@@ -1,0 +1,67 @@
+name: coin_flipper
+description: A premium coin flip app with 3D animations, haptic feedback, and personalization features.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  provider: ^6.1.1
+
+  # Local Storage
+  shared_preferences: ^2.2.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Animations
+  flutter_animate: ^4.3.0
+
+  # Haptic Feedback
+  vibration: ^1.8.4
+
+  # Audio
+  audioplayers: ^5.2.1
+
+  # Ads (Google Mobile Ads)
+  google_mobile_ads: ^4.0.0
+
+  # In-App Purchases
+  in_app_purchase: ^3.1.13
+
+  # UI Components
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.9
+  shimmer: ^3.0.0
+
+  # Utilities
+  uuid: ^4.2.2
+  intl: ^0.18.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.7
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/sounds/
+    - assets/icons/
+
+  fonts:
+    - family: CoinFlipper
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
