@@ -1,0 +1,39 @@
+# This file configures the analyzer for the Coin Flipper app.
+
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Avoid print statements in production code
+    avoid_print: true
+
+    # Prefer const constructors
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    prefer_const_literals_to_create_immutables: true
+
+    # Prefer final for local variables
+    prefer_final_locals: true
+    prefer_final_in_for_each: true
+
+    # Require type annotations
+    always_declare_return_types: true
+
+    # Avoid unnecessary containers
+    avoid_unnecessary_containers: true
+
+    # Prefer single quotes
+    prefer_single_quotes: true
+
+    # Sort constructors first
+    sort_constructors_first: true
+
+    # Use named parameters
+    avoid_positional_boolean_parameters: true
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    invalid_annotation_target: ignore
