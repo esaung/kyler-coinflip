@@ -211,7 +211,6 @@
             height: 200px;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.1s;
         }
 
         .coin.flipping {
@@ -224,9 +223,8 @@
 
         @keyframes flip {
             0% { transform: rotateX(0deg); }
-            15% { transform: rotateX(540deg); }
-            50% { transform: rotateX(1620deg); }
-            100% { transform: rotateX(0deg); }
+            50% { transform: rotateX(1800deg); }
+            100% { transform: rotateX(3600deg); }
         }
 
         .coin.flipping.result-tails {
@@ -235,9 +233,8 @@
 
         @keyframes flipToTails {
             0% { transform: rotateX(0deg); }
-            15% { transform: rotateX(540deg); }
-            50% { transform: rotateX(1620deg); }
-            100% { transform: rotateX(180deg); }
+            50% { transform: rotateX(1800deg); }
+            100% { transform: rotateX(3780deg); }
         }
 
         .coin-face {
@@ -1232,16 +1229,19 @@
             // Generate result
             const result = Math.random() < 0.5 ? 'heads' : 'tails';
 
-            // Remove previous classes and reset state
+            // Reset coin to starting position
             coin.classList.remove('flipping', 'result-tails', 'show-tails');
-            coin.style.transform = '';
-            void coin.offsetWidth; // Trigger reflow
 
-            if (result === 'tails') {
-                coin.classList.add('flipping', 'result-tails');
-            } else {
-                coin.classList.add('flipping');
-            }
+            // Use requestAnimationFrame to ensure clean animation start
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    if (result === 'tails') {
+                        coin.classList.add('flipping', 'result-tails');
+                    } else {
+                        coin.classList.add('flipping');
+                    }
+                });
+            });
 
             // After animation completes
             setTimeout(() => {
